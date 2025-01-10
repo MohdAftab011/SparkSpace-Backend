@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -12,6 +13,8 @@ import apiRouter from './routes/apiRoutes.js';
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
+
+app.use(cors());
 
 
 app.use(express.json());
