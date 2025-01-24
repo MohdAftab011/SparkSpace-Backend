@@ -50,7 +50,7 @@ export const signInService = async (data)=>{
             statusCode : StatusCodes.UNAUTHORIZED
         })
        }
-       return {username : user.username , avatar : user.avatar, email : user.email , token : createJWT({id:user._id, email:user.email})}
+       return {username : user.username , _id: user._id, avatar : user.avatar, email : user.email , token : createJWT({id:user._id, email:user.email})}
     } catch (error) {
         console.log('User Service error',error);
         throw error;
