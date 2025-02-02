@@ -20,9 +20,9 @@ const isUserAdminOfWorkspace = (workspace, userId) => {
   };
 
 export const isUserMemberOfWorkspace = (workspace,userId)=>{
-    return workspace.members.find(
-        (member)=>member.memberId._id.toString()===userId
-    );    
+  return workspace.members.find((member) => {
+    return member.memberId._id.toString() === userId;
+  });    
 }
 
 const isChannelAlreadyPartOfWorkspace = (workspace,channelName)=>{
@@ -71,6 +71,7 @@ export const createWorkspaceService = async (workspaceData)=>{
     
 
 };
+
 
 export const getWorkspacesUserIsMemberOfService = async (userId) => {
     try {
@@ -124,7 +125,7 @@ export const getWorkspaceService = async (workspaceId,userId)=>{
                 statusCode: StatusCodes.NOT_FOUND
             });
         }
-
+        console.log(workspace);
         const isMember = isUserMemberOfWorkspace(workspace,userId);
 
         if(!isMember){
@@ -195,6 +196,19 @@ export const UpdateWorkspaceService = async (workspaceId,workspaceData,userId)=>
         throw error;
     }
 };
+
+export const resetWorkspaceJoinCodeService = async(workspaceId,userId)=>{
+  try {
+    const newJoinCode = uuidv4().substring(0, 6).toUpperCase();
+    const updatedWorkspace = await UpdateWorkspaceService(workspaceId,{
+      joinCode : newJoinCode
+    },userId);
+    return updatedWorkspace;
+  } catch (error) {
+    console.log('resetWorkspaceJoinCodeService error', error);
+    throw error;
+  }
+}
 
 
 export const addMemberToWorkspaceService = async (workspaceId,memberId,role,userId) => {
