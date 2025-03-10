@@ -10,7 +10,7 @@ export default function messageHandlers(io, socket) {
     const {channelId} = data;
     //socket.broadcast.emit(NEW_MESSAGE_RECEIVED_EVENT, messageResponse);
     io.to(channelId).emit(NEW_MESSAGE_RECEIVED_EVENT, messageResponse)
-    cb({
+    cb?.({
       success: true,
       message: 'Successfully created the message',
       data: messageResponse
