@@ -22,7 +22,7 @@ export const getMessagesService = async (messageParams, page, limit, user) => {
     });
   }
 
-  const messages = await messageRepository.getPaginatedMessaged(
+  const messages = await messageRepository.getPaginatedMessages(
     messageParams,
     page,
     limit
@@ -32,5 +32,9 @@ export const getMessagesService = async (messageParams, page, limit, user) => {
 
 export const createMessageService = async (message) => {
   const newMessage = await messageRepository.create(message);
-  return newMessage;
+
+  const messageDetails = await messageRepository.getMessageDetails(
+    newMessage._id
+  );
+  return messageDetails;
 };
