@@ -3,6 +3,7 @@ import express from 'express';
 import channelRouter from './channel.js';
 import memberRouter from './members.js'
 import messageRouter from './messages.js'
+import paymentRouter from './payments.js';
 import userRouter from './users.js';
 import workspaceRouter from './workspace.js';
 
@@ -17,6 +18,8 @@ router.use('/channels', channelRouter);
 router.use('/members', memberRouter);
 
 router.use('/messages',messageRouter);
+
+router.use('/payments',paymentRouter)
 
 
 export default router;
