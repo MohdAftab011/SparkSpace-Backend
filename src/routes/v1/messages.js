@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { getMessages, getPresignedUrlFromAWS } from '../../controllers/messageController.js';
-import { isAuthenticated } from '../../middlewares/authMiddleware.js';
+import { isAuthenticated } from '../../middlewares/authmiddleware.js';
 
 const router = express.Router();
 
